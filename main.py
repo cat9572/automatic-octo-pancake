@@ -19,7 +19,7 @@ def handle(data):
         "sec-fetch-site": "cross-site",
         "sec-fetch-storage-access": "active",
         "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36"}
-    output = dict()
+    output = list()
     sitemaps = json.loads(data)
     for i in sitemaps:
         pages = requests.get(i, headers = give)
