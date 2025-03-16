@@ -25,8 +25,10 @@ def handle(data):
         pages = requests.get(i, headers = give)
         iSoup = bs4.BeautifulSoup(pages.text, "xml")
         for j in iSoup.find_all("loc"):
-            print(j.text)
             information = requests.get(j.text, headers = give)
             jSoup = bs4.BeautifulSoup(information.text, "html.parser")
-            output[jSoup.find("h1").text] = jSoup.get_text(separator = ". ", strip = True)
+            try:
+                output[jSoup.find("title").text] = jSoup.get_text(separator = ". ", strip = True)
+            except:
+                pass
     return json.dumps(output, ensure_ascii=False)
